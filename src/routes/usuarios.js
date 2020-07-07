@@ -13,7 +13,7 @@ const app = express();
 
 /**
  * @swagger
- * /api/Usuarios:
+ * /Usuarios:
  *   get:
  *     tags:
  *       - Usuarios
