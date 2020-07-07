@@ -26,7 +26,8 @@
   "scripts": {
     "start": "node src/server",
     "dev": "nodemon src/server",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --collectCoverage --detectOpenHandles --collect-coverage  --watchAll"
   },
   "keywords": [],
   "author": "",
