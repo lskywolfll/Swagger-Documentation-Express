@@ -4,13 +4,13 @@
 
 # Pasos Produccion
 
-1. ~~~npm install~~~
-1. ~~~npm start~~~
+1. npm install
+1. npm start
 
 # Pasos Development
 
-1. ~~~npm install~~~
-1. ~~~npm run dev~~~
+1. npm install
+1. npm run dev
 
 # Rutas
 
