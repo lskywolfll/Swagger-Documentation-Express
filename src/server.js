@@ -13,15 +13,15 @@ const swaggerDefinition = {
         title: "TheCodebuzz API",
         version: "1.0.0",
         description:
-            "Thecodebuzz test service to demo how to document your API",
+            "Documentacion experimental con expresss puro",
         license: {
             name: "MIT",
-            url: "https://thecodebuzz.com"
+            url: "https://localhost"
         },
         contact: {
-            name: "TheCodeBuzz",
-            url: "https://thecodebuzz.com",
-            email: "info@thecodebuzz.com"
+            name: "René",
+            url: "https://github.com/lskywolfll",
+            email: "renealejandrosanchezmorales@gmail.com"
         }
     },
     servers: [
