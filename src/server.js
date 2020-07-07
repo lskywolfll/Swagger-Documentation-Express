@@ -39,11 +39,13 @@ const options = {
 
 const specs = swaggerJsondoc(options);
 
-console.log(specs)
+// console.log(specs)
 app.use("/docs", swaggerUi.serve);
 
 app.get("/docs", swaggerUi.setup(specs, { explorer: true, swaggerOptions: options }));
 
 app.listen(3000, () => {
-    console.log(`> listening on: http://localhost:3000`)
+    // console.log(`> listening on: http://localhost:3000`)
 });
+
+module.exports = app;

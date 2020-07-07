@@ -32,4 +32,12 @@ app.get('/Usuario', (req, res) => {
     });
 });
 
+app.post('/Usuario', (req, res) => {
+    const { nombre } = req.body;
+
+    res.status(200).json({
+        nombre
+    })
+});
+
 module.exports = app;
