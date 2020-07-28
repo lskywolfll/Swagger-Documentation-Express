@@ -4,11 +4,24 @@ const app = express();
 
 /**
  * @swagger
- * definitions:
- *   Usuario:
- *     properties:
- *       name:
- *         type: string
+ * components:
+ *      schemas:
+ *          Usuario:
+ *              type: object
+ *              properties:
+ *                  name: 
+ *                      type: string
+ *                      example: Rene
+ *          List_Usuario:
+ *              type: object
+ *              properties:
+ *                  ok:
+ *                      type: bool
+ *                      example: true
+ *                  usuarios:
+ *                      type: array
+ *                      items:
+ *                          $ref: '#/components/schemas/Usuario'
  */
 
 /**
@@ -17,22 +30,42 @@ const app = express();
  *   get:
  *     tags:
  *       - Usuarios
- *     description: Returns all puppies
+ *     description: Retorna una lista de usuarios
  *     produces:
  *       - application/json
  *     responses:
  *       200:
  *         description: An object 
- *         schema:
- *           $ref: '#/definitions/Usuario'
+ *         content:
+ *          application/json:
+ *              schema:
+ *                  $ref: '#/components/schemas/List_Usuario'
  */
-app.get('/Usuario', (req, res) => {
+app.get('/Usuarios', (req, res) => {
     res.json({
-        name: 'Rene'
+        ok: true,
+        usuarios: [{ name: 'Rene' }, { name: 'Jose' }, { name: 'Fernando' }]
     });
 });
 
-app.post('/Usuario', (req, res) => {
+/**
+ * @swagger
+ * /Usuarios:
+ *  post:
+ *      tags:
+ *          - Usuarios
+ *      description: se crea un usuario
+ *      produces:
+ *          - application/json
+ *      responses:
+ *          200:
+ *              description: Se crea un usuario
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/Usuario'
+ */
+app.post('/Usuarios', (req, res) => {
     const { nombre } = req.body;
 
     res.status(200).json({

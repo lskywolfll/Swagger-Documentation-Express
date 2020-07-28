@@ -2,10 +2,8 @@ const express = require('express');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsondoc = require('swagger-jsdoc');
-// Routes
-app.use(require('./routes/index'));
-
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+const { host, port } = require('./config/config');
+const cors = require('cors');
 
 const swaggerDefinition = {
     openapi: "3.0.0",
@@ -24,11 +22,15 @@ const swaggerDefinition = {
             email: "renealejandrosanchezmorales@gmail.com"
         }
     },
+    basePath: '/',
     servers: [
         {
-            url: "http://localhost:3000/"
+            url: `${host}:${port}`
         }
     ],
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    schemes: ['http', 'https'],
 };
 
 const options = {
@@ -39,13 +41,17 @@ const options = {
 
 const specs = swaggerJsondoc(options);
 
-// console.log(specs)
-app.use("/docs", swaggerUi.serve);
+app.use(cors({ methods: ['*'], credentials: false, origin: '*' }));
 
-app.get("/docs", swaggerUi.setup(specs, { explorer: true, swaggerOptions: options }));
+app.use("/api-docs", swaggerUi.serve);
 
-app.listen(3000, () => {
-    // console.log(`> listening on: http://localhost:3000`)
+app.get("/api-docs", swaggerUi.setup(specs, { explorer: true, swaggerOptions: options }));
+
+// Routes
+app.use(require('./routes/index'));
+
+app.listen(port, () => {
+    console.log(`> listening on ${host}:${port}`);
 });
 
 module.exports = app;
